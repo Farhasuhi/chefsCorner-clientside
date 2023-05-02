@@ -16,6 +16,17 @@ app.get('/chefs',(req,res)=>{
 app.get('/recipes',(req,res)=>{
     res.send(recipes)
 })
+app.get('/recipes/:id',(req,res)=>{
+   const id=parseInt(req.params.id);
+   const recipe=recipes.find(r=>parseInt(r.recipe_id)===id);
+   res.send(recipe)
+})
+app.get('/chefs/:id',(req,res)=>{
+    const id=req.params.id;
+    const chefsId=recipes.filter(recipe=>recipe.chef_id===id)
+    res.send(chefsId)
+
+})
 
 app.listen(port,()=>{
     console.log(`chefs corner running on port",${port}`)
